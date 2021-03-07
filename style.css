@@ -1,0 +1,14 @@
+body{
+    margin: 0;
+}
+.container{
+    background-color: gray;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+
+.draggable{
+    padding:1rem;
+    background-color: white;
+    cursor: move;
+}
