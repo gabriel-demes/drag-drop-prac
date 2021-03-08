@@ -3,32 +3,31 @@ const containers = document.querySelectorAll('.container')
 
 
 const load = () =>{
-    contEvent()
+    dropEvent()
     fetch('http://localhost:3000/students')
     .then(resp => resp.json())
     .then(students => {
-        students.forEach(student =>{
-            addPerson(student)
+        students.forEach(studentObj =>{
+            addStudentToList(studentObj)
         })
     })
 
 }
 
-const addPerson = (student) => {
-    const element = document.querySelector(`#${student.list}`)
-    const p = document.createElement('p')
-    p.textContent = student.name
-    p.classList.add('draggable')
-    p.draggable = "true"
-    p.dataset.id = student.id
-    p.dataset.list = student.list
-    element.append(p)
-    pEvent(p)
+const addStudentToList = (studentObj) => {
+    const correctList = document.querySelector(`#${studentObj.list}`)
+    const nameP = document.createElement('p')
+    nameP.textContent = studentObj.name
+    nameP.classList.add('draggable')
+    nameP.draggable = "true"
+    nameP.dataset.id = studentObj.id
+    nameP.dataset.list = studentObj.list
+    correctList.append(nameP)
+    dragEvent(nameP)
 }
 
-const pEvent = p =>{
+const dragEvent = p =>{
     p.addEventListener('dragstart', ()=>{
-            console.log('start')
             p.classList.add('dragging')
         })
     p.addEventListener('dragend', ()=>{
@@ -48,11 +47,11 @@ const handleMovement = p =>{
             body: JSON.stringify({list: currList})
         })
         .then(resp => resp.json())
-        .then(student => {p.dataset.id = student.list})
+        .then(student => {p.dataset.list = student.list})
     }
 }
 
-const contEvent = () => {
+const dropEvent = () => {
     containers.forEach(container => {
         container.addEventListener("dragover", (event)=>{
             event.preventDefault()

@@ -1,13 +1,13 @@
-body{
+body{ /* Removes margins from body */
     margin: 0;
 }
-.container{
+.container{ /* adds stlying to our Divs containing our 2 lists */
     background-color: gray;
     padding: 1rem;
     margin-top: 2rem;
 }
 
-.draggable{
+.draggable{ /* adds styling to the items/names that are going to be draggable */
     padding:1rem;
     background-color: white;
     cursor: move;
